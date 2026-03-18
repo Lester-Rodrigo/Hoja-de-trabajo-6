@@ -1,22 +1,62 @@
 package Products;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class MapFactory {
 
-    public static <T> Map<T, T> createMap(int type) {
+    public void createMap(int type, int operation, String category, String name) {
         switch (type) {
             case 1:
-                Map<String, Integer> HashMap = new HashMap<>();
-                return new HashMap<>();
+                HashMapOperator hash = new HashMapOperator();
+                switch (type) {
+                case 1:
+                    hash.addProduct(category, name);
+                case 2:
+                    hash.showCategory(name);               
+                case 3:
+                    hash.showData();
+                case 4:
+                    hash.showDataOrdered();
+                case 5:
+                    hash.showNameCategory();
+                case 6:
+                    hash.showNameCategoryOrdered();        
+                default:
+                    throw new IllegalArgumentException("Invalid operation: " + operation);
+                }
+                
             case 2:
-                Map<String, Integer> LinkedHashMap = new LinkedHashMap<>();
-                return new LinkedHashMap<>();
+                switch (type) {
+                case 1:
+                                        
+                case 2:
+                                       
+                case 3:
+
+                case 4:
+
+                case 5:
+
+                case 6:
+                                        
+                default:
+                    throw new IllegalArgumentException("Invalid operation: " + operation);
+                }                
             case 3:
-                Map<String, Integer> TreeMap = new TreeMap<>();
-                return new TreeMap<>();
+                switch (type) {
+                case 1:
+                                        
+                case 2:
+                                       
+                case 3:
+
+                case 4:
+
+                case 5:
+
+                case 6:
+                                        
+                default:
+                    throw new IllegalArgumentException("Invalid operation: " + operation);
+                }                
             default:
                 throw new IllegalArgumentException("Invalid map type: " + type);
         }

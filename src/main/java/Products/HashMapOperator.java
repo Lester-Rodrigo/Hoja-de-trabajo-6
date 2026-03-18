@@ -48,7 +48,7 @@ public class HashMapOperator implements Operation{
     }
 
     @Override
-    public void showNameCategoryOrderes(){
+    public void showNameCategoryOrdered(){
         inventory.entrySet()
         .stream()
         .sorted(Map.Entry.comparingByKey())

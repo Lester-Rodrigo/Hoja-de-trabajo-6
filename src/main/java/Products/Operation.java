@@ -6,5 +6,5 @@ public interface Operation {
     public void showData();
     public void showDataOrdered();
     public void showNameCategory();
-    public void showNameCategoryOrderes();
+    public void showNameCategoryOrdered();
 }
