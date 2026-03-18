@@ -10,9 +10,10 @@ public class TreeMapOperator implements Operation{
     public void addProduct(String category, String name){
         if (inventory.containsKey(category)){
             inventory.get(category).setAmount();
+        } else {
+            Product product = new Product(name);
+            inventory.put(category, product);
         }
-        Product product = new Product(name);
-        inventory.put(category, product);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class TreeMapOperator implements Operation{
     }
 
     @Override
-    public void showNameCategoryOrderes(){
+    public void showNameCategoryOrdered(){
         inventory.forEach((k, v) -> 
             System.out.println(k + " -> " + v.getName()));
     }
