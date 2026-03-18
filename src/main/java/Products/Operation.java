@@ -1,4 +1,4 @@
-package Productos;
+package Products;
 import java.util.Map;
 
 public interface Operation {
