@@ -1,79 +1,86 @@
 package Inventory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Implementation of the Operation interface using a HashMap.
- * 
- * <p>This implementation does not guarantee order of elements.</p>
+ * Implementación de inventario usando HashMap.
+ * No mantiene orden en las claves.
  */
-public class HashMapOperator implements Operation{
+public class HashMapOperator implements Operation {
 
-    /** Stores inventory data (category -> product) */
-    Map<String, Product> inventory = new HashMap<>();
-    
-    /**
-     * Adds a product to the inventory.
-     * If the category exists, increases its amount.
-     */
-    
+    /** Mapa que almacena categorías y listas de productos */
+    private Map<String, List<Product>> inventory = new HashMap<>();
+
     @Override
-    public void addProduct(String category, String name){
-        if (inventory.containsKey(category)){
-            inventory.get(category).setAmount();
-        } else {
-            Product product = new Product(name);
-            inventory.put(category, product);
+    public void addProduct(String category, String name) {
+        inventory.putIfAbsent(category, new ArrayList<>());
+
+        List<Product> products = inventory.get(category);
+
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(name)) {
+                product.setAmount();
+                return;
+            }
         }
+
+        products.add(new Product(name));
     }
 
-    /**
-     * Searches for a product by name and returns its category.
-     */
     @Override
-    public String showCategory(String name){
-        for (Map.Entry<String, Product> entry : inventory.entrySet()) {
-            if (entry.getValue().getName().equals(name)) {
-                return entry.getKey();
+    public String showCategory(String name) {
+        for (Map.Entry<String, List<Product>> entry : inventory.entrySet()) {
+            for (Product product : entry.getValue()) {
+                if (product.getName().equalsIgnoreCase(name)) {
+                    return entry.getKey();
+                }
             }
         }
         return "Producto no encontrado";
     }
 
-    /** Displays all stored data */
     @Override
-    public void showData(){
-        inventory.forEach((k, v) -> 
-            System.out.println(k + " -> " + v.getName() + " -> " + v.getAmount()));
+    public void showData() {
+        for (Map.Entry<String, List<Product>> entry : inventory.entrySet()) {
+            for (Product product : entry.getValue()) {
+                System.out.println(entry.getKey() + " -> " + product.getName() + " -> " + product.getAmount());
+            }
+        }
     }
 
-    /** Displays data ordered by category */
     @Override
-    public void showDataOrdered(){
+    public void showDataOrdered() {
         inventory.entrySet()
-        .stream()
-        .sorted(Map.Entry.comparingByKey())
-        .forEach(e ->
-            System.out.println(e.getKey() + " -> " + e.getValue().getName() + " -> " + e.getValue().getAmount())
-        );
+            .stream()
+            .sorted(Map.Entry.comparingByKey())
+            .forEach(entry -> {
+                for (Product product : entry.getValue()) {
+                    System.out.println(entry.getKey() + " -> " + product.getName() + " -> " + product.getAmount());
+                }
+            });
     }
 
-    /** Displays category and product name */
     @Override
-    public void showNameCategory(){
-        inventory.forEach((k, v) -> 
-            System.out.println(k + " -> " + v.getName()));
+    public void showNameCategory() {
+        for (Map.Entry<String, List<Product>> entry : inventory.entrySet()) {
+            for (Product product : entry.getValue()) {
+                System.out.println(entry.getKey() + " -> " + product.getName());
+            }
+        }
     }
 
-    /** Displays category and product name ordered */
     @Override
-    public void showNameCategoryOrdered(){
+    public void showNameCategoryOrdered() {
         inventory.entrySet()
-        .stream()
-        .sorted(Map.Entry.comparingByKey())
-        .forEach(e ->
-            System.out.println(e.getKey() + " -> " + e.getValue().getName())
-        );
+            .stream()
+            .sorted(Map.Entry.comparingByKey())
+            .forEach(entry -> {
+                for (Product product : entry.getValue()) {
+                    System.out.println(entry.getKey() + " -> " + product.getName());
+                }
+            });
     }
 }
