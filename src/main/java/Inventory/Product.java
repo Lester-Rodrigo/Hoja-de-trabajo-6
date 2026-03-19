@@ -1,4 +1,4 @@
-package Products;
+package Inventory;
 
 public class Product{
     String name;

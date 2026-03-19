@@ -1,10 +1,10 @@
-package Products;
+package Inventory;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-public class TreeMapOperator implements Operation{
-    Map<String, Product> inventory = new TreeMap<>();
+public class LinkedHashMapOperator implements Operation {
+    Map<String, Product> inventory = new LinkedHashMap<>();
 
     @Override
     public void addProduct(String category, String name){
@@ -33,9 +33,13 @@ public class TreeMapOperator implements Operation{
     }
 
     @Override
-    public void showDataOrdered() {
-        inventory.forEach((k, v) -> 
-            System.out.println(k + " -> " + v.getName() + " -> " + v.getAmount()));
+    public void showDataOrdered(){
+        inventory.entrySet()
+        .stream()
+        .sorted(Map.Entry.comparingByKey())
+        .forEach(e ->
+            System.out.println(e.getKey() + " -> " + e.getValue().getName() + " -> " + e.getValue().getAmount())
+        );
     }
 
     @Override
@@ -46,8 +50,11 @@ public class TreeMapOperator implements Operation{
 
     @Override
     public void showNameCategoryOrdered(){
-        inventory.forEach((k, v) -> 
-            System.out.println(k + " -> " + v.getName()));
+        inventory.entrySet()
+        .stream()
+        .sorted(Map.Entry.comparingByKey())
+        .forEach(e ->
+            System.out.println(e.getKey() + " -> " + e.getValue().getName())
+        );
     }
-    
 }

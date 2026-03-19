@@ -1,4 +1,4 @@
-package Products;
+package Inventory;
 
 public interface Operation {
     public void addProduct(String category, String name);

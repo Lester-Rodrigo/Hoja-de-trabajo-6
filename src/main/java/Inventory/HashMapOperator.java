@@ -1,4 +1,4 @@
-package Products;
+package Inventory;
 
 import java.util.HashMap;
 import java.util.Map;
