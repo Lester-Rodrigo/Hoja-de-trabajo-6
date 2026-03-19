@@ -5,13 +5,33 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Main class that runs the inventory system.
+ * 
+ * <p>This program:
+ * <ul>
+ *   <li>Reads product data from a text file</li>
+ *   <li>Stores the data in different Map implementations</li>
+ *   <li>Allows the user to interact through a console menu</li>
+ * </ul>
+ * </p>
+ */
 public class Main {
+
+    /**
+     * Entry point of the program.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
 
         String txt = "ListadoProducto.txt";
         Scanner scanner = new Scanner(System.in);
-                MapFactory factory = new MapFactory();
+        MapFactory factory = new MapFactory();
 
+        /**
+         * Reads the file and loads initial data into all map types.
+         */
         try (BufferedReader br = new BufferedReader(new FileReader(txt))) {
 
             String lyne;
@@ -39,9 +59,12 @@ public class Main {
         }
 
         int opc = 0;
-        while (opc!=1){
-            
-            
+
+        /**
+         * Main menu loop for user interaction.
+         */
+        while (opc != 1){
+
             System.out.println("Ingrese el map a utilizar");
             System.out.println("1) HashMap");
             System.out.println("2) LinkedMap ");
@@ -57,18 +80,21 @@ public class Main {
             System.out.println("6) Mostrar categoria y nombre ordenados");
             int operate = scanner.nextInt();
 
-            if (operate==1){
+            if (operate == 1){
+                scanner.nextLine(); 
                 System.out.println("Ingrese su categoria");
                 String category = scanner.nextLine();
                 System.out.println("Ingrese el nombre del producto");
                 String product = scanner.nextLine();
                 factory.executeOperation(map, operate, category, product);
-            } else if (operate==2){
+
+            } else if (operate == 2){
+                scanner.nextLine(); 
                 System.out.println("Ingrese el nombre del producto");
                 String product = scanner.nextLine();
                 System.out.println("Categoria: " + factory.executeOperationWithReturn(map, operate, product));
-            }
-            else{
+
+            } else {
                 factory.executeOperation(map, operate, "", "");
             }
 
@@ -76,8 +102,8 @@ public class Main {
             System.out.println("1) Si");
             System.out.println("2) No");
             opc = scanner.nextInt();
-
-            
         }
+
+        scanner.close();
     }
 }

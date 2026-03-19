@@ -3,7 +3,14 @@ package Inventory;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Implementation of Operation using a TreeMap.
+ * 
+ * <p>Automatically sorts elements by key.</p>
+ */
 public class TreeMapOperator implements Operation{
+
+    /** Stores inventory data sorted by category */
     Map<String, Product> inventory = new TreeMap<>();
 
     @Override
@@ -49,5 +56,4 @@ public class TreeMapOperator implements Operation{
         inventory.forEach((k, v) -> 
             System.out.println(k + " -> " + v.getName()));
     }
-    
 }

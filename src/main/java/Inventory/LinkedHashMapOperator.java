@@ -3,7 +3,14 @@ package Inventory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Implementation of Operation using a LinkedHashMap.
+ * 
+ * <p>Maintains insertion order of elements.</p>
+ */
 public class LinkedHashMapOperator implements Operation {
+
+    /** Stores inventory data preserving insertion order */
     Map<String, Product> inventory = new LinkedHashMap<>();
 
     @Override

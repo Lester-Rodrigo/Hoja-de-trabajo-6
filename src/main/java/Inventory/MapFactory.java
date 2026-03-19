@@ -1,11 +1,25 @@
 package Inventory;
 
+/**
+ * Factory class used to execute operations on different Map implementations.
+ * 
+ * <p>This class acts as a controller that delegates operations to:
+ * HashMap, LinkedHashMap, or TreeMap implementations.</p>
+ */
 public class MapFactory {
 
     private HashMapOperator hash = new HashMapOperator();
     private LinkedHashMapOperator linked = new LinkedHashMapOperator();
     private TreeMapOperator tree = new TreeMapOperator();
 
+    /**
+     * Executes an operation that does not return a value.
+     *
+     * @param type the map type (1: HashMap, 2: LinkedHashMap, 3: TreeMap)
+     * @param operation the operation to execute
+     * @param category the product category
+     * @param name the product name
+     */
     public void executeOperation(int type, int operation, String category, String name) {
         switch (type) {
             case 1:
@@ -79,6 +93,14 @@ public class MapFactory {
         }
     }
 
+    /**
+     * Executes an operation that returns a result.
+     *
+     * @param type the map type
+     * @param operation the operation (only 2 supported)
+     * @param name the product name
+     * @return the category of the product
+     */
     public String executeOperationWithReturn(int type, int operation, String name) {
         switch (type) {
             case 1:
