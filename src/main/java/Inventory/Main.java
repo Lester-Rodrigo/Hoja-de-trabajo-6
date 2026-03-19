@@ -10,6 +10,7 @@ public class Main {
 
         String txt = "ListadoProducto.txt";
         Scanner scanner = new Scanner(System.in);
+                MapFactory factory = new MapFactory();
 
         try (BufferedReader br = new BufferedReader(new FileReader(txt))) {
 
@@ -27,15 +28,20 @@ public class Main {
 
                 String category = parts[0].trim();
                 String name = parts[1].trim();
+
+                factory.executeOperation(1, 1, category, name);
+                factory.executeOperation(2, 1, category, name);
+                factory.executeOperation(3, 1, category, name);
             }
 
         } catch (IOException e) {
             System.out.println("Error al leer archivo: " + e.getMessage());
         }
 
-        int opc=0;
-        MapFactory factory = new MapFactory();
-        while (opc!=4){
+        int opc = 0;
+        while (opc!=1){
+            
+            
             System.out.println("Ingrese el map a utilizar");
             System.out.println("1) HashMap");
             System.out.println("2) LinkedMap ");
@@ -65,6 +71,12 @@ public class Main {
             else{
                 factory.executeOperation(map, operate, "", "");
             }
+
+            System.out.println("¿Desea salir? ");
+            System.out.println("1) Si");
+            System.out.println("2) No");
+            opc = scanner.nextInt();
+
             
         }
     }

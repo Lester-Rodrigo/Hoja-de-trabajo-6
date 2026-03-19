@@ -2,11 +2,13 @@ package Inventory;
 
 public class MapFactory {
 
-    public void executeOperation(int type, int operation, String category, String name) {
+    private HashMapOperator hash = new HashMapOperator();
+    private LinkedHashMapOperator linked = new LinkedHashMapOperator();
+    private TreeMapOperator tree = new TreeMapOperator();
 
+    public void executeOperation(int type, int operation, String category, String name) {
         switch (type) {
             case 1:
-                HashMapOperator hash = new HashMapOperator();
                 switch (operation) {
                     case 1:
                         hash.addProduct(category, name);
@@ -29,7 +31,6 @@ public class MapFactory {
                 break;
 
             case 2:
-                LinkedHashMapOperator linked = new LinkedHashMapOperator();
                 switch (operation) {
                     case 1:
                         linked.addProduct(category, name);
@@ -52,7 +53,6 @@ public class MapFactory {
                 break;
 
             case 3:
-                TreeMapOperator tree = new TreeMapOperator();
                 switch (operation) {
                     case 1:
                         tree.addProduct(category, name);
@@ -82,35 +82,18 @@ public class MapFactory {
     public String executeOperationWithReturn(int type, int operation, String name) {
         switch (type) {
             case 1:
-                HashMapOperator hash = new HashMapOperator();
-                switch (operation) {
-                    case 2:
-                        return hash.showCategory(name);
-                    default:
-                        throw new IllegalArgumentException("Invalid operation for return: " + operation);
-                }
-
+                if (operation == 2) return hash.showCategory(name);
+                break;
             case 2:
-                LinkedHashMapOperator linked = new LinkedHashMapOperator();
-                switch (operation) {
-                    case 2:
-                        return linked.showCategory(name);
-                    default:
-                        throw new IllegalArgumentException("Invalid operation for return: " + operation);
-                }
-
+                if (operation == 2) return linked.showCategory(name);
+                break;
             case 3:
-                TreeMapOperator tree = new TreeMapOperator();
-                switch (operation) {
-                    case 2:
-                        return tree.showCategory(name);
-                    default:
-                        throw new IllegalArgumentException("Invalid operation for return: " + operation);
-                }
-
+                if (operation == 2) return tree.showCategory(name);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid map type: " + type);
         }
+
+        throw new IllegalArgumentException("Invalid operation for return: " + operation);
     }
 }
-
