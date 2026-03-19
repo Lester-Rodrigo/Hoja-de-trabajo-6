@@ -1,4 +1,4 @@
-Lester Alvarez- | Diego Rodríguez - 25215
+Lester Alvarez- 25196 | Diego Rodríguez - 25215
 
 Inventory System - README
 
