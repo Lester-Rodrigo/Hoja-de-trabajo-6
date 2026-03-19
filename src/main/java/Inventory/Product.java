@@ -20,7 +20,7 @@ public class Product{
      */
     public Product(String name){
         this.name = name;
-        this.amount=0;
+        this.amount=1;
     }
 
     /**

@@ -17,6 +17,7 @@ public class HashMapOperator implements Operation{
      * Adds a product to the inventory.
      * If the category exists, increases its amount.
      */
+    
     @Override
     public void addProduct(String category, String name){
         if (inventory.containsKey(category)){
